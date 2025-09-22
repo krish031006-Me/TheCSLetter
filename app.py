@@ -195,7 +195,8 @@ def show_article():
     # rendering to the template-
     return render_template("article.html", letter = content[0])
 
-# this route is to generate the newsletter in testing phase only!
+''' this route is to generate the newsletter in testing phase only!
+    You need to manually run it using /trigger in the url'''
 @app.route("/trigger")
 def trigger():
     # The main logic 
@@ -209,7 +210,6 @@ def trigger():
     for user in users:
         sessionId = user["id"]
         status = user["frequency"] 
-        print(sessionId) # just for a bit of error checking
         # getting the time-date for today
         try:
             today = datetime.today()
@@ -217,7 +217,6 @@ def trigger():
             letter = None # default value for letter
             # conditions for different frequencies-
             if status == "except_sundays":
-                print("inside1")
                 # if it's a sunday
                 if weekday != 6:
                     # calling the newsletter function
@@ -225,10 +224,8 @@ def trigger():
                 else:
                     pass
             elif status == "daily":
-                print("inside2")
                 letter = newsletter(sessionId)
             elif status == "weekly":
-                print("inside3")
                 # sending on monday
                 if weekday == 0:
                     letter = newsletter(sessionId)
@@ -236,14 +233,11 @@ def trigger():
                     pass
             # trying to add the letter into the letters table-
             result = db.execute("SELECT COUNT(*) as count FROM letters WHERE user_id = ?", (sessionId,))
-            print("It's working till here")
 
             length = result[0]["count"] if result else 0 # it will have zero in it if the user has no letter sended yet!
 
             if letter != None:
-                print("Error here")
                 db.execute("INSERT INTO letters (user_id, letter_id, title, content) VALUES(?, ?, ?, ?)", sessionId, length+1, letter["title"], letter["para"])
-                print("not here")
             
         except Exception as e:
             print("Error while executing newsletter on startup:", e)
