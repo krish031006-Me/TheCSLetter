@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+{% block title %}Already subed{% endblock %}
+
+{% block main %}
+    <h1 class = "mb-3 subscribe_text">Already Done!</h1>
+    <p class = "mb-3">You are already subscribed to the CSLetter.</p>
+    <p class = "mb-3">But do you want to <span><a href = "/already">change the categories</a></span> for the letter?</p>
+    <br>
+    <h3>Categories selected by you: </h3>
+    <br>
+    <p>
+        {% for element in categories %}
+            {{element}}{% if loop.index < categories | length %}, {% endif %}
+        {% endfor %}
+    </p>
+    <br>
+    <h3>Frequency choosen by you: </h3>
+    <br>
+    <p>
+        {% if often == except_sundays %}
+            Daily except Sundays<span><a href = "/frequency"> Wanna change?</a></span>
+        {% else %}
+            {{often}}<span>    <a href = "/frequency">Wanna change?</a></span>
+        {% endif %}
+    </p>
+{% endblock %}

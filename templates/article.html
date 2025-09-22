@@ -1,0 +1,8 @@
+{% extends "layout.html" %}
+{% block title %}{{ letter.title | safe}}{% endblock %}
+{% block main %}
+    <!--We are just showcasig the newsletter the user clicked on here-->
+    <div class = "text-center mb-3">
+        {{ letter.content | safe }}
+    </div>
+{% endblock %}

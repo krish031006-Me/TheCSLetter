@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+{% block title %}Categories{% endblock %}
+{% block main %}
+    <h1 class = "mb-3">Choose the Categories you are interested in-</h1>
+    <p class = "mb-3"> Please choose at atleast six of these and you can also skip for now by clicking on the link below submit:</p>
+    <form action = "/categories" method = "post">
+        <div class = "mb-3">
+            {% for row in categories%}
+                {% for key in row.keys() %}
+                <!--Use justify-content-end to take everything on the right side-->
+                    <div class="form-check mb-3 d-flex gap-3">
+                        <input class="form-check-input" name = "category" type="checkbox" value="{{key}}" id="tech">
+                        <label class="form-check-label" for="tech">{{key}}</label>
+                    </div>
+                {% endfor %}
+            {% endfor %}
+                <div class = "mb-3">
+                    <button class = "btn btn-primary" type = "submit">Submit</button>
+                </div>
+                <div>
+                    <a href = "/skip">skip for now</a>
+                </div>
+            </form>
+        </div>
+    </form>
+{% endblock %}

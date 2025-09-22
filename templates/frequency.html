@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+{% block title %}Choose frequency{% endblock %}
+{% block main %}
+    <h1>Choose a frequency:</h1>
+    <p>How often would you like to recieve our newsletter-</p>
+    <form action = "/frequency" method = "post">
+        <div class="form-check mb-3 d-flex gap-3">
+            <input class="form-check-input" name = "frequency" type="radio" value="weekly" id="often">
+            <label class="form-check-label" for="often">Weekly - Have our newsletter sent weekly to you.</label>
+            <br>
+            <input class="form-check-input" name = "frequency" type="radio" value="daily" id="often">
+            <label class="form-check-label" for="often">Daily  - Have our newsletter sent daily to you.</label>
+            <br>
+            <input class="form-check-input" name = "frequency" type="radio" value="except_sundays" id="often" checked>
+            <label class="form-check-label" for="often">Except Sundays  - Have our newsletter sent daily to you except sundays.</label>
+        </div>
+        <div class = "mb-3">
+            <button class = "btn btn-primary" type = "submit">Submit</button>
+        </div>
+    </form>
+{% endblock %}

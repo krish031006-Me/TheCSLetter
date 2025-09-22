@@ -1,0 +1,85 @@
+{% extends "layout.html" %}
+{% block title %}Dashboard{% endblock %}
+
+{% block main %}
+    <nav> <!--THese classes have been taken from bootstrap-->
+        <div>
+            <a class="navbar-brand skip" style = "font-size:100px" id = "title" href="/"><span class="white" id = "span1"></span><span class="red" id = "span2"></span><span class="blue" id = "span3"></span><span class="white" id = "span4"></span></a>
+        </div>
+    </nav>
+    <br><br>
+    <h1 class = "mb-3">Recent Newsletters-</h1>
+    <br>
+    {% if details %}
+        <!--Automating the slides-->
+        <div id="myCarousel" class="carousel slide carousel-fade mb-6" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+                {% for i in range(details|length) %}
+                    <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="{{ i }}" class="{% if loop.first %}active{% endif %}" aria-current="{% if i == 0 %}true{% endif %}" aria-label="Slide {{ i + 1}}"></button>
+                {% endfor %}
+            </div>
+            <!--dynamically adding slides-->
+            <div class="carousel-inner">
+            {% for element in details %}
+                <div class="carousel-item {% if loop.first %}active{% endif %}">
+                    <svg class="bd-placeholder-img" width="100%" height="100%" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <rect width="100%" height="100%" fill="var(--bs-secondary-color)"></rect>
+                    </svg>
+                    <!--Overlay class here-->
+                     <div class="carousel-overlay"></div>
+                    <div class="container">
+                        <form action = "/article" method="post">
+                            <div class="carousel-caption text-center">
+                                <h2 id = "title">{{ element.title|safe }}</h2>
+                                <p class="opacity-75">{{ lines[loop.index0]|safe}}</p>
+                                <!--hidden input tags wouldn't be shows to the client but there value will still be passed to the server-->
+                                <input type = "hidden" name = "letter_id" value = "{{ element.letter_id }}">
+                                <input type = "hidden" name = "user_id" value = "{{ element.user_id }}">
+                                <p><button class="btn btn-lg btn-primary" type = "submit">View Details »</button></p>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            {% endfor %}
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+            </button>
+
+            <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+        <br><br><br>
+        <!--Dynamic headings after the slides-->
+        <div class="container marketing">
+            <div class="row">
+            {% for element in details %}
+                <div class="col-lg-4">
+                    <form action = "/article" method = "post">
+                        <h3 class="fw-normal" id = "title">{{ element.title|safe}}</h3>
+                        <p>{{ (lines[loop.index0])|safe }}</p>
+                        <input type = "hidden" name = "letter_id" value = "{{ element.letter_id }}">
+                        <input type = "hidden" name = "user_id" value = "{{ element.user_id }}">
+                        <p><button class="btn btn-secondary" id = "read_btn" type = "submit">Read it!</button></p>
+                    </form>
+                </div>
+                {% if (loop.index0 + 1) % 3 == 0 and not loop.last %}
+                    </div><div class="row">
+                {% endif %}
+            {% endfor %}
+            </div>
+        </div>
+
+    {% else %}
+        <h3>There no letters yet!</h3>
+    {% endif %}
+    <br><br><br>
+    <!-- Footer -->
+    <footer class="container">
+        <p class="float-end"><a href="#">Back to top</a></p>
+        <p>© 2025 Krish Bhardwaj. All rights reserved. </p>
+    </footer>
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+{% block title %}Subscribe{% endblock %}
+
+{% block main %}
+    <h1 class = "mb-3">Subscribe!</h1>
+    <p class = "mb-3">Do you want to use as the email to recieve our newsletter or would you like to change?</p>
+    <form action = "/subscribe" method="post">
+        <div class = "mb-3">
+            <!--We want the current gmail to stay there-->
+            <input class="form-control mx-auto w-auto" value="{{details.email}}" autofocus required autocomplete="off" name = "email_letter" type="email">
+        </div>
+        <div class = "mb-3">
+            <button class = "btn btn-primary" type = "submit">Submit</button>
+        </div>
+    </form>
+{% endblock %}

@@ -1,0 +1,103 @@
+/* THese are decendant selectors */
+/* Size for brand */
+/* for light mode-
+background color = d0e8ff
+title background color: a6d1ff
+color = #2c2c2c
+*/
+nav .navbar-brand
+{
+    font-size: xx-large;
+}
+/* Colors for brand */
+nav .navbar-brand .blue
+{
+    color: #537fbe;
+}
+nav .navbar-brand .red
+{
+    color: #ea433b;
+}
+nav .navbar-brand .black{
+    color: #353839
+}
+nav .navbar-brand .white{
+    color: #E6E6E6;
+}
+body:not(.skip){
+    background-color: #121212;
+    color: #E6E6E6;
+}
+#title_bar{
+    background-color: #1F1F1F;
+    padding: 1rem !important; /* important keyword is to override other css command*/
+    border: none !important;
+    /*Cretaes a shadow around box-
+    box-shadow: offset-x offset-y blur-radius color;*/
+    box-shadow: 0 1px 8px rgba(0,0,0,0.6); 
+}
+label{
+    font-size:20px
+}
+.dash_title{
+    font-size: 100px;
+}
+#toggle{
+    background-color: aliceblue;
+    color: black;
+    margin:30px 60px;
+    margin-left: 50px;
+}
+.distinct_text{
+    color: #58A6FF;
+}
+.success{
+    color: #61d883;
+}
+.subscribe_text{
+     color:lightgreen;
+}
+.circle_container{
+    position:absolute;
+    display:flex;
+    margin-top: 20px;
+    margin-right: 20px !important;
+    text-align: end;
+}
+.circle_button{
+    height: 70px;
+    width: 70px;
+    border-radius: 50%; /* it will make a square a circle*/
+    background-color:#1F1F1F;
+    cursor: pointer; /* it sets the curson when hovering over the button */
+    display: inline-block;
+    border:none;
+    box-shadow: 0 1px 8px rgba(0,0,0,0.6); 
+}   
+.image{
+    display:block;
+    width:80%;
+    height: auto;
+    margin:auto;
+}
+.link_button{
+    background: None;
+    border: None;
+    color: blue;
+    cursor: pointer;
+}
+.carousel-item{
+    height: 200px;
+    position: relative;
+}
+.carousel-overlay{
+    position: absolute; 
+    pointer-events: none;
+    inset: 0;
+    height: 100%;
+    width: 100%;
+}
+#read_btn{
+    background-color: #0d6efd !important;
+    border-color: #0d6efd;
+}
