@@ -218,20 +218,29 @@ def topic_chooser(choosen, user_id, db):
 
 # this is the function to get all the intro  content for the newsletter using wikipedia API 
 def wiki(topic):
+    # error checking
+    if topic == None:
+        return
+    
     # shaping topics for the queries
     topic = topic.lower().replace(" ", "_")
-    # the url with topic
+    # the url with topic  
     url = f"https://en.wikipedia.org/api/rest_v1/page/summary/{topic}"
-    
+
+    '''THis below is a header whose purpose is to store the meta data sent to the server during an API call'''
     headers = {
         "User-Agent": "MyNewsletterBot/1.0 (https://yourdomain.com/contact)"
     }
+
+    # using the actual API
     response = requests.get(url, headers=headers)
 
+    # a bit of error checking
     if response.status_code != 200:
         print(f"Failed to fetch: {response.status_code}")
         return None
-
+    
+    # converting data recieved into json
     try:
         data = response.json()
     except ValueError:
@@ -255,7 +264,8 @@ def wiki(topic):
 def helperFeed(url, topic, category, db, user_id, sub_topics, attempt, MAX):
     # error checking for topic if it's None
     if topic == None:
-        return
+        return 
+    
     # getting articles from the medium
     feed = feedparser.parse(url)
     # checking if we got no articles regarding this topic
@@ -264,9 +274,10 @@ def helperFeed(url, topic, category, db, user_id, sub_topics, attempt, MAX):
         index = sub_topics.index(topic)
         # checking if the topic isn't the last sub-topic
         if index == len(sub_topics) - 1:
-            # storing the next topic
+            # storing the first topic
             topic = sub_topics[0]
         else:
+            # storing the last topic 
             topic = sub_topics[index + 1]
         # calling the function recursively
         if attempt >= MAX:
@@ -279,6 +290,7 @@ def helperFeed(url, topic, category, db, user_id, sub_topics, attempt, MAX):
         article = check_article(entry, db, user_id)
         if article:
             break
+
     # updating the database with the new link
     db.execute("""UPDATE topics_covered SET links = 
                     CASE 
@@ -287,9 +299,12 @@ def helperFeed(url, topic, category, db, user_id, sub_topics, attempt, MAX):
                     END
                 WHERE id = ?""", article["link"], article["link"], user_id)
     print(f"Fetched {len(feed.entries)} articles for topic: {topic}")
+
     return article
-"""This is function to request for RSS feed of Geeks For Geeks but they didn't let my requests pass through so i couldn't make it work...."""
+
 """
+This is function to request for RSS feed of Geeks For Geeks but they didn't let my requests pass through so i couldn't make it work........
+
 # this function is for feed parsing of geeks for geeks
 def gfgFeed(topic, db, user_id):
     url = "https://www.geeksforgeeks.org/feed/"
@@ -340,28 +355,34 @@ def gfgFeed(topic, db, user_id):
 
 # the purpose of this function is to check if the article has been used before or not  
 def check_article(entry, db, user_id):
+
     # getting the links that are already used     
     used_links = db.execute("SELECT links FROM topics_covered WHERE id = ?", user_id)
     links = []
     if used_links and used_links[0].get("links"):
         links = [l.strip() for l in used_links[0]["links"].split(',') if l.strip()]
 
+    # getting the link of the entry recieved
     entry_link = getattr(entry, "link", "")
+
+    # checking if the entry has been repeated before
     if not entry_link or entry_link in links:
         return None
+    
+    # getting the title, summary of the entry
     title = entry.get("title", "")
     summary = entry.get("summary", "") or entry.get("description", "")
-    text = f"{title} {summary}"
-    if not isEng(text):
-        return None
-
-    summary = entry.get("summary", "") or entry.get("description", "")
+    # error checking for summary
     if not summary and "content" in entry and entry.content:
         summary = entry.content[0].get("value", "")
-
     if not summary:
         summary = "No summary available for this topic."
 
+    text = f"{title} {summary}"
+    # checking if the language is English
+    if not isEng(text):
+        return None
+    
     return {
         "link": entry_link,
         "title": entry.get("title", ""),
@@ -370,6 +391,8 @@ def check_article(entry, db, user_id):
 
 # the sole purpose of this function is to choose 7 categories at a random from the list of categories for a week
 def choose_category(fields):
+
+    # choosing 7 categories at random out of all
     keys = [list(row.keys())[0] for row in fields]
     if len(keys) < 7:
         return keys
@@ -377,6 +400,7 @@ def choose_category(fields):
 
 # this function has to create a nice fomatted hmtl para for our template to process
 def prepare(article):
+
     # getting the start of the article
     start = "" 
     # getting the summary from the article
@@ -391,6 +415,7 @@ def prepare(article):
         "article_title": article["title"],
         "article_link": article["link"],
     }
+
 # to check if article is in english or not
 def isEng(text):
     try:
@@ -400,6 +425,7 @@ def isEng(text):
     
 # this function is to send the email to the recipient 
 def sendEmail(subject, body, userId, db):
+    
     # fetching the user email
     emailRow = db.execute("SELECT email FROM users WHERE id = ?", userId)
     if not emailRow:
