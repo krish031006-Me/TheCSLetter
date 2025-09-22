@@ -29,13 +29,20 @@ This project automates content delivery to multiple users, making it easy to org
 
 newsletter-project/
 │
-├── app.py # Flask app with routes, forms, and newsletter triggers
-├── generate.py # Core script to generate & send newsletters
-├── helpers.py # Helper functions (login_required)
-├── users.db # SQLite database for users and topics
-├── templates/ # Newsletter templates
-├── static/ # Contains stylesheets, JS scripts, and images
-├── requirements.txt # list of all the modules needed
+├── app.py # Flask app with routes, forms, and newsletter triggers  
+
+├── generate.py # Core script to generate & send newsletters  
+
+├── helpers.py # Helper functions (login_required)  
+
+├── users.db # SQLite database for users and topics  
+
+├── templates/ # Newsletter templates  
+
+├── static/ # Contains stylesheets, JS scripts, and images  
+
+├── requirements.txt # list of all the modules needed  
+
 └── README.md # Project documentation
 
 ---
