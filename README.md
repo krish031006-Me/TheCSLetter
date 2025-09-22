@@ -44,8 +44,8 @@ newsletter-project/
 
 ### 1. Clone the Repository
 
-git clone https://github.com/<your-username>/newsletter-project.git
-cd newsletter-project
+git clone https://github.com/krish031006-Me/TheCSLetter.git
+cd TheCSLetter
 
 ### 2. Install Dependencies
 pip install -r requirements.txt
@@ -53,10 +53,8 @@ pip install -r requirements.txt
 ### 3. Configure Email Settings
 Enable App Passwords in your email provider.
 
-Add credentials in a .env file:
-
-EMAIL_USER=your_email@example.com
-EMAIL_PASS=your_app_password
+senderEmail = "your_email@example.com"
+password = "your_app_password"
 
 ### 4. Run the Flask App
 
@@ -84,7 +82,7 @@ Add a web interface for subscriber import/export.
 
 ### 🧑‍💻 Author
 Krish Bhardwaj
-Freshman @ PIET | CS Student | Learning Full-Stack Development | Wants to learn ML
+Sophomore @ PIET | CS Student | Learning Full-Stack Development | Wants to learn ML and Docker
 
 ### ⭐ Contribute
 This is primarily a learning project, but contributions, suggestions, and ideas are welcome!
