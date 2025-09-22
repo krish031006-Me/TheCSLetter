@@ -47,9 +47,12 @@ newsletter-project/
 ```bash
 git clone https://github.com/krish031006-Me/TheCSLetter.git
 cd TheCSLetter
+````
 
 ### 2. Install Dependencies
+```bash 
 pip install -r requirements.txt
+```
 
 ### 3. Configure Email Settings
 Enable App Passwords in your email provider.
@@ -58,10 +61,13 @@ senderEmail = "your_email@example.com"
 password = "your_app_password"
 
 ### 4. Run the Flask App
-
+```bash
 python app.py
+```
 # or
+```bash
 python -m flask run
+```
 Open your browser and go to http://127.0.0.1:5000 to access the dashboard.
 
 ### 📬 Example Newsletter
