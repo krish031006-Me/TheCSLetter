@@ -27,7 +27,7 @@ This project automates content delivery to multiple users, making it easy to org
 
 ## 📂 Project Structure
 
-newsletter-project/
+newsletter-project/  
 │  
 ├── app.py # Flask app with routes, forms, and newsletter triggers  
 ├── generate.py # Core script to generate & send newsletters  
