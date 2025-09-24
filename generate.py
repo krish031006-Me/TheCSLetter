@@ -30,6 +30,7 @@ password = os.environ.get("APP_PASSWORD")
 # function inside of which the newsletter would be created
 def newsletter(user_id):
     print(f"The letter this time is called by {user_id}") # this line is for a bit of error checking using terminal
+    
     # initialising the database
     db = SQL("sqlite:///users.db")
 
