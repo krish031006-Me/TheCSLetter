@@ -23,7 +23,7 @@ from email.mime.multipart import MIMEMultipart
 # setting for consistent results
 DetectorFactory.seed = 0
 
-# global email and password for the email
+# global email and password for the email using environment variables 
 senderEmail = os.environ.get("NEWSLETTER_EMAIL")
 password = os.environ.get("APP_PASSWORD")
 
