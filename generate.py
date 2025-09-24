@@ -4,6 +4,7 @@
 
 # importing the libraries-
 import requests
+import os
 import feedparser
 from cs50 import SQL
 from topics import categories
@@ -23,8 +24,8 @@ from email.mime.multipart import MIMEMultipart
 DetectorFactory.seed = 0
 
 # global email and password for the email
-senderEmail = "TheCSLetter@gmail.com"
-password = "yyrh wfko lnyi qbwy"
+senderEmail = os.environ.get("NEWSLETTER_EMAIL")
+password = os.environ.get("APP_PASSWORD")
 
 # function inside of which the newsletter would be created
 def newsletter(user_id):
