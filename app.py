@@ -395,5 +395,4 @@ def frequency():
 if __name__ == "__main__":
     # only run the scheduler in the main process, not the reloader
     # scheduler.start()
-    print("Scheduler started!")
     app.run(debug=True, use_reloader=True)
