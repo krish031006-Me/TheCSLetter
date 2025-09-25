@@ -299,7 +299,7 @@ def already():
 def stats():
     count = db.execute("SELECT COUNT(username) AS total FROM users WHERE categories IS NOT NULL")
     if count and len(count) > 0:
-        total = count[0]["total"] - 1
+        total = count[0]["total"]
     else:
         total = 0
     return render_template("stats.html", count = total)
