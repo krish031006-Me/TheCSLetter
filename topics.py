@@ -9,7 +9,7 @@ categories = [
     {
         "Web Development": [
             "Frontend", "Backend", "HTML", "CSS",
-            "React", "Django", "Flask", "Node.js"
+            "React", "Django", "Flask", "Node.js", "Spring Boot"
         ]
     },
     {
@@ -28,7 +28,7 @@ categories = [
     {
         "Systems": [
             "Operating Systems", "Compilers", "Computer Networks",
-            "Computer Architecture", "Parallel Computing"
+            "Computer Architecture", "Parallel Computing", "System Design"
         ]
     },
     {
@@ -40,7 +40,7 @@ categories = [
     {
         "Software Engineering": [
             "Version Control", "Git", "Agile", "Scrum",
-            "Software Testing", "DevOps", "Design Patterns"
+            "Software Testing", "DevOps", "Design Patterns", "Docker"
         ]
     },
     
