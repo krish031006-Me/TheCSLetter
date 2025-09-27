@@ -67,18 +67,18 @@ password = "your_app_password"
 ```bash
 python app.py
 ```
-# or
+#### or
 ```bash
 python -m flask run
 ```
 Open your browser and go to http://127.0.0.1:5000 to access the dashboard.
 
 ### 4b. Run the app using Docker
-# Build the Docker image:
+#### Build the Docker image:
 ```bash
 docker build -t csletter .
 ```
-# Running the Docker image
+#### Running the Docker image
 ```bash
 docker run -d -p 8080:5000 csletter
 ```
