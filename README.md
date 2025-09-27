@@ -22,6 +22,7 @@ This project automates content delivery to multiple users, making it easy to org
 - **Flask** for the web app.
 - **SQLite** for database management.
 - **SMTP** for email delivery.
+- **Docker** for containerization
 
 ---
 
@@ -36,9 +37,11 @@ newsletter-project/
 ├── templates/ # Newsletter templates  
 ├── static/ # Contains stylesheets, JS scripts, and images  
 ├── requirements.txt # list of all the modules needed  
+├── Dockerfile # Docker configuration for containerized deployment  
+├── .dockerignore # Files to exclude from Docker image  
 └── README.md # Project documentation  
 
----
+  ---
 
 ## ⚡ Getting Started
 
@@ -49,7 +52,7 @@ git clone https://github.com/krish031006-Me/TheCSLetter.git
 cd TheCSLetter
 ````
 
-### 2. Install Dependencies
+### 2. Install Dependencies (without docker)
 ```bash 
 pip install -r requirements.txt
 ```
@@ -60,7 +63,7 @@ Enable App Passwords in your email provider.
 senderEmail = "your_email@example.com"
 password = "your_app_password"
 
-### 4. Run the Flask App
+### 4a. Run the Flask App locally
 ```bash
 python app.py
 ```
@@ -69,6 +72,16 @@ python app.py
 python -m flask run
 ```
 Open your browser and go to http://127.0.0.1:5000 to access the dashboard.
+
+### 4b. Run the app using Docker
+# Build the Docker image:
+```bash
+docker build -t csletter .
+```
+# Running the Docker image
+```bash
+docker run -d -p 8080:5000 csletter
+```
 
 ### 📬 Example Newsletter
 Subject: Codeforces Weekly Digest
@@ -98,3 +111,4 @@ This is primarily a learning project, but contributions, suggestions, and ideas 
 This project is licensed under the MIT License.
 
 ---
+
