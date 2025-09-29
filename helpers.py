@@ -18,7 +18,3 @@ def login_required(f):
         return f(*args, **kwargs)
     
     return decorated_function 
-
-# function to add commas in stats-
-def comma(number):
-    ...
