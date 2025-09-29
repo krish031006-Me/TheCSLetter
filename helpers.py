@@ -8,7 +8,7 @@ from functools import wraps
 # login_required to check if the user is logged in or not
 def login_required(f):
     """ *args is just a tuple used to store all the positional arguments passed to the function and 
-    **kwargs is used to store all the keyqord arguments in the form of a dict."""
+    **kwargs is used to store all the keyword arguments in the form of a dict."""
     @wraps(f) # used this to not clear the metadata of the original function.
     def decorated_function(*args, **kwargs): # this is actually the wraper around our f functions
         # checking if the user_id is stored in cookies
